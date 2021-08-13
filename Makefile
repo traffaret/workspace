@@ -35,9 +35,8 @@ zsh:
 tmux:
 	@echo "Configuring tmux: $$(tmux -V)"
 	@cp -r "$(SOURCE)/.tmux" "${HOME}/.tmux"
-	@rm -f "${HOME}/.tmux.conf" && ln -s "$(SOURCE)/.tmux/.tmux.conf" "${HOME}/.tmux.conf"
+	@rm -f "${HOME}/.tmux.conf" && ln -s "${HOME}/.tmux/.tmux.conf" "${HOME}/.tmux.conf"
 	@if [ ! -f "${HOME}/.tmux.conf.local" ]; then cp "$(SOURCE)/.tmux/.tmux.conf.local" "${HOME}/.tmux.conf.local"; fi
-	@if [ ! -d "${HOME}/.tmux/themes/nord-tmux" ]; then $(GIT) clone --depth=1 https://github.com/arcticicestudio/nord-tmux.git "${HOME}/.tmux/themes/nord-tmux"; fi
 
 .PHONY: vim
 vim:
@@ -55,6 +54,10 @@ dircolors:
 	@echo "Configuring dircolors"
 	@dircolors && (if [ ! -d "$(SOURCE)/custom/nord-dircolors" ]; then $(GIT) clone https://github.com/arcticicestudio/nord-dircolors.git "$(SOURCE)/custom/nord-dircolors"; fi)
 	@ln -s "$(SOURCE)/custom/nord-dircolors/src/dir_colors" "${HOME}/.dircolors" &>/dev/null
+
+.PHONY: update
+update: $HOME/.workspace
+	@cd $WORKSPACE && $(GIT) pull
 
 .PHONY: uninstall
 uninstall:
