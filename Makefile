@@ -77,5 +77,6 @@ build:
 .PHONY: run
 run:
 	$(DOCKER) run --rm \
-		-v "$$(pwd)/src":/home/appuser/.workspace:rw \
+		-v "$$(pwd)/src":/home/appuser/src \
+		-v "$$(pwd)/Makefile":/home/appuser/Makefile \
 		--name $(DOCKER_IMAGE) -it $(DOCKER_IMAGE) bash
