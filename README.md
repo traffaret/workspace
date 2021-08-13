@@ -35,6 +35,10 @@ Updating local copy of the workspace with all configurations.
 make -C $WORKSPACE update && make -C $WORKSPACE
 ```
 
+# Examples
+
+![shell](https://user-images.githubusercontent.com/3088123/129407279-59569b57-1e74-44b0-9280-550b0582ab6b.png)
+
 # Issues
 
 With nerd fonts and icons scaling: https://github.com/Powerlevel9k/powerlevel9k/issues/430
