@@ -18,6 +18,7 @@ home:
 	@cp "$(WORKSPACE)/.bashrc" ${HOME}/.bashrc
 	@cp "$(WORKSPACE)/.gitmessage" "${HOME}/.gitmessage"
 	@cp "$(WORKSPACE)/.gitconfig" "${HOME}/.gitconfig"
+	@cp "$(WORKSPACE)/.workspace" "${HOME}/.workspace" && echo "export WORKSPACE=$$(pwd)" >> "${HOME}/.workspace"
 
 .PHONY:  zsh
 zsh:
