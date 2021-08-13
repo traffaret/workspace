@@ -1,0 +1,14 @@
+[pull]
+	rebase = true
+[user]
+	name = traffaret
+	email = to@toro.one
+[core]
+	autocrlf = input
+	editor = vim
+[merge]
+	ff = false
+[push]
+	default = simple
+[commit]
+	template = ~/.gitmessage
