@@ -53,7 +53,7 @@ mc:
 
 dircolors:
 	@echo "Configuring dircolors"
-	@dircolors && (if [ ! -d "$(WORKSPACE)/custom/nord-dircolors" ]; then $(GIT) clone https://github.com/arcticicestudio/nord-dircolors.git "$(WORKSPACE)/custom/nord-dircolors"; fi) && ln -s "$(WORKSPACE)/custom/nord-dircolors/src/dir_colors" "${HOME}/.dircolors"
+	@dircolors && (if [ ! -d "$(WORKSPACE)/custom/nord-dircolors" ]; then $(GIT) clone https://github.com/arcticicestudio/nord-dircolors.git "$(WORKSPACE)/custom/nord-dircolors"; fi) && ln -s "$(WORKSPACE)/custom/nord-dircolors/src/dir_colors" "${HOME}/.dircolors" &>/dev/null
 
 .PHONY: uninstall
 uninstall:
