@@ -15,7 +15,7 @@ all: home zsh vim mc tmux dircolors
 .PHONY: home
 home:
 	@echo "Configuring BASH"
-	$(shell cp "$(WORKSPACE)/.bashrc" ${HOME}/.bashrc && source "${HOME}/.bashrc")
+	@cp "$(WORKSPACE)/.bashrc" ${HOME}/.bashrc
 	@cp "$(WORKSPACE)/.gitmessage" "${HOME}/.gitmessage"
 	@cp "$(WORKSPACE)/.gitconfig" "${HOME}/.gitconfig"
 
@@ -23,7 +23,7 @@ home:
 zsh:
 	@echo "Installing ZSH: $$(zsh --version)"
 	@if [ ! -d "${ZSH}" ]; then $(GIT) clone https://github.com/ohmyzsh/ohmyzsh.git "${ZSH}"; fi
-	$(shell cp "$(WORKSPACE)/.zshrc" "${HOME}/.zshrc" && source "${HOME}/.zshrc")
+	@cp "$(WORKSPACE)/.zshrc" "${HOME}/.zshrc"
 	@chsh -s $(shell which zsh)
 	@echo "Installing ZSH plugins/themes"
 	@if [ ! -d "${ZSH_CUSTOM}/themes/powerlevel10k" ]; then $(GIT) clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM}/themes/powerlevel10k"; fi
