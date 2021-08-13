@@ -70,6 +70,7 @@ uninstall:
 	@rm -f "${HOME}/.vimrc"
 	@rm -rf "${HOME}/.mc"
 	@rm -f "${HOME}/.dircolors"
+	@rm -rf "${WORKSPACE}"
 
 # Docker
 
