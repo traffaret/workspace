@@ -56,11 +56,11 @@ dircolors:
 	@ln -s "$(SOURCE)/custom/nord-dircolors/src/dir_colors" "${HOME}/.dircolors" &>/dev/null
 
 .PHONY: update
-update: $HOME/.workspace
-	@cd $WORKSPACE && $(GIT) pull
+update: ${HOME}/.workspace
+	@cd "${WORKSPACE}" && $(GIT) pull
 
 .PHONY: uninstall
-uninstall:
+uninstall: ${HOME}/.workspace
 	@rm -rf "${ZSH}"
 	@rm -f "${HOME}/.zshrc"
 	@rm -rf "${HOME}/.tmux"
@@ -70,6 +70,7 @@ uninstall:
 	@rm -f "${HOME}/.vimrc"
 	@rm -rf "${HOME}/.mc"
 	@rm -f "${HOME}/.dircolors"
+	@rm -f "${HOME}/.workspace"
 	@rm -rf "${WORKSPACE}"
 
 # Docker
