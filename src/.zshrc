@@ -90,7 +90,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-source $HOME/.workspace
+source $HOME/.config/workspace/env
 
 # Some prefs
 #

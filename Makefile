@@ -4,21 +4,28 @@ DOCKER := docker
 DOCKER_IMAGE := "workspace-local-dev"
 
 GIT := git
-SOURCE := $$(pwd)/src
+PWD := $$(pwd)
+SOURCE := $(PWD)/src
+CONFIG := ${HOME}/.config/workspace
+ENV := $(CONFIG)/env
 
 export ZSH := ${HOME}/.oh-my-zsh
 export ZSH_CUSTOM := ${ZSH}/custom
 
 .PHONY: all
-all: home zsh vim mc tmux dircolors
+all: home git zsh vim mc tmux dircolors
 
 .PHONY: home
 home:
 	@echo "Configuring BASH"
 	@cp "$(SOURCE)/.bashrc" ${HOME}/.bashrc
+	@mkdir -p "$(CONFIG)"
+	@cp "$(SOURCE)/.workspace" "$(ENV)" && echo "export WORKSPACE=$(PWD)" >> "$(ENV)"
+
+.PHONY: git
+git:
 	@cp "$(SOURCE)/.gitmessage" "${HOME}/.gitmessage"
 	@cp "$(SOURCE)/.gitconfig" "${HOME}/.gitconfig"
-	@cp "$(SOURCE)/.workspace" "${HOME}/.workspace" && echo "export WORKSPACE=$$(pwd)" >> "${HOME}/.workspace"
 
 .PHONY:  zsh
 zsh:
@@ -50,18 +57,21 @@ mc:
 	@echo "Configuring $$(mc --version)"
 	@cp -r "$(SOURCE)/.mc" "${HOME}"/.mc
 
+.PHONY: dircolors
 dircolors:
 	@echo "Configuring dircolors"
 	@dircolors && (if [ ! -d "$(SOURCE)/custom/nord-dircolors" ]; then $(GIT) clone https://github.com/arcticicestudio/nord-dircolors.git "$(SOURCE)/custom/nord-dircolors"; fi)
 	@ln -s "$(SOURCE)/custom/nord-dircolors/src/dir_colors" "${HOME}/.dircolors" &>/dev/null
 
 .PHONY: update
-update: ${HOME}/.workspace
+update: $(ENV)
 	@cd "${WORKSPACE}" && $(GIT) pull
 
 .PHONY: uninstall
-uninstall: ${HOME}/.workspace
+uninstall: $(ENV)
 	@rm -rf "${ZSH}"
+	@rm -f "${HOME}/.gitmessage"
+	@rm -f "${HOME}/.gitconfig"
 	@rm -f "${HOME}/.zshrc"
 	@rm -rf "${HOME}/.tmux"
 	@rm -f "${HOME}/.tmux.conf.local"
@@ -70,8 +80,8 @@ uninstall: ${HOME}/.workspace
 	@rm -f "${HOME}/.vimrc"
 	@rm -rf "${HOME}/.mc"
 	@rm -f "${HOME}/.dircolors"
-	@rm -f "${HOME}/.workspace"
 	@rm -rf "${WORKSPACE}"
+	@rm -rf "$(CONFIG)"
 
 # Docker
 
@@ -82,6 +92,6 @@ build:
 .PHONY: run
 run:
 	$(DOCKER) run --rm \
-		-v "$$(pwd)/src":/home/appuser/src \
-		-v "$$(pwd)/Makefile":/home/appuser/Makefile \
+		-v "$(SOURCE)":/home/appuser/src \
+		-v "$(PWD)/Makefile":/home/appuser/Makefile \
 		--name $(DOCKER_IMAGE) -it $(DOCKER_IMAGE) bash
