@@ -60,7 +60,7 @@ mc:
 .PHONY: dircolors
 dircolors:
 	@echo "Configuring dircolors"
-	@dircolors && (if [ ! -d "$(SOURCE)/custom/nord-dircolors" ]; then $(GIT) clone https://github.com/arcticicestudio/nord-dircolors.git "$(SOURCE)/custom/nord-dircolors"; fi)
+	@rm -f "${HOME}/.dircolors"
 	@ln -s "$(SOURCE)/custom/nord-dircolors/src/dir_colors" "${HOME}/.dircolors" &>/dev/null
 
 .PHONY: update
