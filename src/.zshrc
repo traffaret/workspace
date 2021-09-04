@@ -82,6 +82,7 @@ DISABLE_AUTO_UPDATE=false
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+    ssh-agent
     dircycle
     git
     virtualenv
