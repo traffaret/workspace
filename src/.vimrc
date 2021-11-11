@@ -145,6 +145,7 @@ set vb t_vb=
 let g:syntastic_enable_signs=1
 let g:nerdtree_tabs_open_on_console_startup=0
 let NERDTreeShowHidden=1
+let g:NERDTreeWinSize=50
 :command NE NERDTreeToggle
 
 " Keymap
