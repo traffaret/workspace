@@ -19,13 +19,9 @@ call vundle#begin()
 " GitHub repos"
 " Original repos"
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'lifepillar/vim-solarized8'
 Plugin 'jlanzarotta/bufexplorer'
-Plugin 'preservim/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
-Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'majutsushi/tagbar'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'lepture/vim-jinja'
@@ -33,7 +29,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'itchyny/lightline.vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'arcticicestudio/nord-vim'
+" Plugin 'arcticicestudio/nord-vim'
+Plugin 'catppuccin/vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -74,11 +71,11 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " set background=dark
 " colorscheme solarized8
-colorscheme nord
+colorscheme catppuccin_macchiato
 
 " define lightline configuration
 let g:lightline = {
-      \ 'colorscheme': 'nord',
+      \ 'colorscheme': 'catppuccin_macchiato',
       \ }
 
 " Easier formatting of paragraphs
