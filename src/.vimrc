@@ -29,6 +29,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'itchyny/lightline.vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'preservim/nerdtree'
 " Plugin 'arcticicestudio/nord-vim'
 Plugin 'catppuccin/vim'
 
