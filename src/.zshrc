@@ -120,5 +120,7 @@ export EDITOR=$VISUAL
 export DOCKER_BUILDKIT=1
 export DOCKER_COMPOSE_CLI=1
 
+export TZ='Europe/Moscow'
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
