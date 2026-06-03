@@ -1,7 +1,8 @@
 # Workspace
 Initialize local dev workspace.
-Installing oh-my-zsh, tmux, vim, dircolors.
-Uses [nord theme colors](https://www.nordtheme.com/).
+Installing oh-my-zsh, tmux, vim.
+
+[Color Schemes](https://github.com/mbadolato/iterm2-color-schemes)
 
 # Installation
 ```bash
@@ -10,7 +11,7 @@ git clone https://github.com/traffaret/workspace.git .workspace
 
 Run to install all configurations:
 ```bash
-make -C $WORKSPACE
+make -C .workspace
 ```
 
 Additionally install [nerd fonts](https://www.nerdfonts.com/).
@@ -19,12 +20,12 @@ Exit from terminal. On first login configure p10k in prompt.
 
 Single configuration can be installed. For example, tmux:
 ```bash
-make -C $WORKSPACE tmux
+make -C .workspace tmux
 ```
 
 # Uninstall
 ```bash
-make -C $WORKSPACE uninstall
+make -C .workspace uninstall
 ```
 Manually set default shell.
 
@@ -32,12 +33,12 @@ Manually set default shell.
 Updating local copy of the workspace with all configurations.
 
 ```bash
-make -C $WORKSPACE update && make -C $WORKSPACE
+make -C .workspace update && make -C .workspace
 ```
 
 # Examples
 
-![shell](https://user-images.githubusercontent.com/3088123/129407279-59569b57-1e74-44b0-9280-550b0582ab6b.png)
+![shell](https://github.com/user-attachments/assets/60920603-1ffd-476a-bc1a-289408d5874a)
 
 # Issues
 

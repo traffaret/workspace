@@ -13,7 +13,7 @@ export ZSH := ${HOME}/.oh-my-zsh
 export ZSH_CUSTOM := ${ZSH}/custom
 
 .PHONY: all
-all: home git zsh vim mc tmux dircolors
+all: home git zsh p10k vim tmux
 
 .PHONY: home
 home:
@@ -27,7 +27,7 @@ git:
 	@cp "$(SOURCE)/.gitmessage" "${HOME}/.gitmessage"
 	@cp "$(SOURCE)/.gitconfig" "${HOME}/.gitconfig"
 
-.PHONY:  zsh
+.PHONY: zsh
 zsh:
 	@echo "Installing ZSH: $$(zsh --version)"
 	@if [ ! -d "${ZSH}" ]; then $(GIT) clone https://github.com/ohmyzsh/ohmyzsh.git "${ZSH}"; fi
@@ -37,6 +37,11 @@ zsh:
 	@if [ ! -d "${ZSH_CUSTOM}/themes/powerlevel10k" ]; then $(GIT) clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM}/themes/powerlevel10k"; fi
 	@if [ ! -d "${ZSH_CUSTOM}/plugins/zsh-autosuggestions" ]; then $(GIT) clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM}/plugins/zsh-autosuggestions"; fi
 	@if [ ! -d "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting" ]; then $(GIT) clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting"; fi
+
+.PHONY: p10k
+p10k:
+	@echo "Configuring p10k"
+	@cp "$(SOURCE)/.p10k.zsh" "${HOME}/.p10k.zsh"
 
 .PHONY: tmux
 tmux:
@@ -49,19 +54,10 @@ tmux:
 vim:
 	@echo "Configuring $$(vim --version)"
 	@cp "$(SOURCE)/.vimrc"  "${HOME}/.vimrc"
+	@mkdir -p "${HOME}/.vim/colors"
+	@cp -a "$(SOURCE)/.vim/colors/." "${HOME}/.vim/colors"
 	@if [ ! -d "${HOME}/.vim/bundle/Vundle.vim" ]; then $(GIT) clone https://github.com/VundleVim/Vundle.vim.git "${HOME}/.vim/bundle/Vundle.vim"; fi
 	@vim +PluginInstall +qall
-
-.PHONY: mc
-mc:
-	@echo "Configuring $$(mc --version)"
-	@cp -r "$(SOURCE)/.mc" "${HOME}"/.mc
-
-.PHONY: dircolors
-dircolors:
-	@echo "Configuring dircolors"
-	@rm -f "${HOME}/.dircolors"
-	@ln -s "$(SOURCE)/custom/nord-dircolors/src/dir_colors" "${HOME}/.dircolors" &>/dev/null
 
 .PHONY: update
 update: $(ENV)
@@ -69,17 +65,6 @@ update: $(ENV)
 
 .PHONY: uninstall
 uninstall: $(ENV)
-	@rm -rf "${ZSH}"
-	@rm -f "${HOME}/.gitmessage"
-	@rm -f "${HOME}/.gitconfig"
-	@rm -f "${HOME}/.zshrc"
-	@rm -rf "${HOME}/.tmux"
-	@rm -f "${HOME}/.tmux.conf.local"
-	@rm -f "${HOME}/.tmux.conf"
-	@rm -rf "${HOME}/.vim"
-	@rm -f "${HOME}/.vimrc"
-	@rm -rf "${HOME}/.mc"
-	@rm -f "${HOME}/.dircolors"
 	@rm -rf "${WORKSPACE}"
 	@rm -rf "$(CONFIG)"
 

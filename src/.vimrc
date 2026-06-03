@@ -31,7 +31,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'preservim/nerdtree'
 " Plugin 'arcticicestudio/nord-vim'
-Plugin 'catppuccin/vim'
+" Plugin 'catppuccin/vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -72,12 +72,12 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " set background=dark
 " colorscheme solarized8
-colorscheme catppuccin_macchiato
+colorscheme Ardoise
 
 " define lightline configuration
-let g:lightline = {
-      \ 'colorscheme': 'catppuccin_macchiato',
-      \ }
+" let g:lightline = {
+"       \ 'colorscheme': 'Ardoise'
+"       \ }
 
 " Easier formatting of paragraphs
 vmap Q gq
@@ -148,3 +148,4 @@ let g:NERDTreeWinSize=50
 
 " Keymap
 nmap <leader>ne :NERDTreeToggle<cr>
+
